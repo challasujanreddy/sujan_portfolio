@@ -7,6 +7,7 @@ declare global {
       open: () => void;
       close: () => void;
     };
+    openChatbot?: () => void;
   }
 }
 
@@ -47,7 +48,7 @@ export function JotformChatbot() {
       if (widget) widget.remove();
       const s = document.getElementById(scriptId);
       if (s) s.remove();
-      if (window.openChatbot) delete (window as any).openChatbot;
+      if (window.openChatbot) delete window.openChatbot;
     };
   }, []);
 
