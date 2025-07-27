@@ -315,10 +315,12 @@ const Icon = styled.div`
 const CardTitle = styled.h3`
   font-size: 1.25rem;
   font-weight: 600;
+  color: white; 
   margin-bottom: 0.5rem;
 `;
 
 const CardDescription = styled.p`
   font-size: 0.875rem;
   color: #d1d5db;
+  line-height: 1.5;
 `;
