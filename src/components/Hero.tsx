@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback } from 'react';
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;
