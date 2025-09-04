@@ -2,11 +2,14 @@
 @import "tailwindcss/preflight";
 
 @custom-variant dark (&:is(.dark *));
-
 @tailwind utilities;
 
+
+/* ---------------------- */
+/* Global Theme Variables */
+/* ---------------------- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif ,Playfair Display;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif, Playfair Display;
   line-height: 1.5;
   font-weight: 400;
 
@@ -18,6 +21,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
@@ -66,7 +70,13 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #242424;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif,Playfair Display;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif, Playfair Display;
+}
+
+#hero {
+  height: 100vh; /* Set height to be exactly the viewport height */
+  width: 100vw;  /* Set width to be exactly the viewport width */
+  overflow: hidden; /* Hide any overflow from the canvas animation */
 }
 
 h1 {
@@ -74,57 +84,90 @@ h1 {
   line-height: 1.1;
 }
 
+/* ---------------------- */
+/* Button Reset + Styles  */
+/* ---------------------- */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  all: unset; /* reset defaults */
+  display: inline-block;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+/* Gradient Glow Button */
+.btn-gradient {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  background-size: 200% 200%;
+  color: white;
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  border-radius: 9999px;
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+  transition: all 0.3s ease-in-out;
+  animation: gradient-shift 6s ease infinite;
+}
+
+.btn-gradient:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.7);
+}
+
+/* Outline Variant (for Navbar buttons, optional) */
+.btn-outline {
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid #8b5cf6;
+  color: #8b5cf6;
+  transition: all 0.3s ease-in-out;
+}
+.btn-outline:hover {
+  background: #8b5cf6;
+  color: white;
+}
+/* Add this new class within your Button Styles section in index.css */
+
+/* Nav Link Button */
+.btn-nav {
+  position: relative;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em; /* tracking-wide */
+  font-weight: 600; /* font-semibold */
+  white-space: nowrap;
+  padding: 0.5rem 1.25rem; /* py-2 px-5 */
+  font-size: 0.875rem; /* text-sm */
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) { /* sm breakpoint */
+  .btn-nav {
+    padding-left: 1.5rem; /* sm:px-6 */
+    padding-right: 1.5rem;
   }
 }
+
+@media (min-width: 768px) { /* md breakpoint */
+  .btn-nav {
+    padding-left: 1.75rem; /* md:px-7 */
+    padding-right: 1.75rem;
+    font-size: 1rem; /* md:text-base */
+  }
+}
+/* ---------------------- */
+/* Animations             */
+/* ---------------------- */
 @keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 @keyframes glowAnim {
-  0% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0.7;
-    transform: scale(1.05);
-  }
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0.7; transform: scale(1.05); }
 }
 @keyframes wave {
   0%, 100% { transform: translateY(0); }
@@ -133,11 +176,36 @@ button:focus-visible {
 .animate-fade-in {
   animation: fadeIn 1s ease-in-out;
 }
+
+.animate-fade-in-word {
+  display: inline-block;
+}
+
+.animate-fade-in-word > span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInWord 0.8s ease-out forwards;
+}
+
+@keyframes fadeInWord {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ---------------------- */
+/* Theme + Dark Mode      */
+/* ---------------------- */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -210,18 +278,16 @@ button:focus-visible {
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/* ---------------------- */
+/* Tailwind Base Layer    */
+/* ---------------------- */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background; }
 }
 
-canvas {
-  pointer-events: auto !important;
-}
+canvas { pointer-events: auto !important; }
+
 @keyframes glow {
   0%, 100% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.3); }
   50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
@@ -231,6 +297,21 @@ canvas {
   animation: glow 1.5s ease-in-out infinite;
 }
 
-[id] {
-  scroll-margin-top: 80px;
+[id] { scroll-margin-top: 80px; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto;   /* Allow normal vertical scrolling */
+}
+
+#root {
+  overflow-x: hidden;
+}
+
+canvas {
+  display: block; /* Prevents default inline-canvas spacing */
+  max-width: 100%;
+  max-height: 100%;
 }

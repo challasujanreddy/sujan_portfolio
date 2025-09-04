@@ -5,10 +5,12 @@ import ProjectsDrawer from './components/ProjectsDrawer';
 import { PortfolioProvider } from './contexts/PortfolioContext';
 import { Resume } from './components/Resume';
 import { Contact } from './components/Contact';
-import { JotformChatbot } from './components/JotformChatbot';
+import  Chatbot  from './components/Chatbot';
 import { Navigation } from './components/Navigation'; // Make sure you have this!
 
 function App() {
+  const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+
   return (
     <PortfolioProvider>
       <div className="min-h-screen bg-[#0A0A1A] text-white relative">
@@ -26,7 +28,10 @@ function App() {
         </main>
 
         {/* Global AI Chatbot */}
-        <JotformChatbot />
+        {/* The component will only render if the webhookUrl is available */}
+        {webhookUrl && (
+          <Chatbot startOpen={true} webhookUrl={webhookUrl} />
+        )}
 
         {/* Optional: Scroll-to-top or footer */}
       </div>
