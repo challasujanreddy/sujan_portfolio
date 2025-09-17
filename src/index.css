@@ -4,7 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 @tailwind utilities;
 
-
 /* ---------------------- */
 /* Global Theme Variables */
 /* ---------------------- */
@@ -74,9 +73,9 @@ body {
 }
 
 #hero {
-  height: 100vh; /* Set height to be exactly the viewport height */
-  width: 100vw;  /* Set width to be exactly the viewport width */
-  overflow: hidden; /* Hide any overflow from the canvas animation */
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 h1 {
@@ -84,11 +83,25 @@ h1 {
   line-height: 1.1;
 }
 
+/* Fallback styles */
+.bg-gradient-to-br {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.bg-gray-800\/30 {
+  background-color: rgba(31, 41, 55, 0.3);
+}
+
 /* ---------------------- */
 /* Button Reset + Styles  */
 /* ---------------------- */
 button {
-  all: unset; /* reset defaults */
+  all: unset;
   display: inline-block;
   cursor: pointer;
   font-family: inherit;
@@ -115,7 +128,7 @@ button {
   box-shadow: 0 0 25px rgba(139, 92, 246, 0.7);
 }
 
-/* Outline Variant (for Navbar buttons, optional) */
+/* Outline Variant */
 .btn-outline {
   padding: 0.5rem 1.5rem;
   border-radius: 9999px;
@@ -127,36 +140,45 @@ button {
   background: #8b5cf6;
   color: white;
 }
-/* Add this new class within your Button Styles section in index.css */
 
 /* Nav Link Button */
 .btn-nav {
   position: relative;
   border-radius: 9999px;
   text-transform: uppercase;
-  letter-spacing: 0.05em; /* tracking-wide */
-  font-weight: 600; /* font-semibold */
+  letter-spacing: 0.05em;
+  font-weight: 600;
   white-space: nowrap;
-  padding: 0.5rem 1.25rem; /* py-2 px-5 */
-  font-size: 0.875rem; /* text-sm */
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
 
-@media (min-width: 640px) { /* sm breakpoint */
+/* Active link - enhanced */
+.btn-nav[aria-current="page"] {
+  color: #8b5cf6 !important;
+  font-weight: 600;
+  border-bottom: 3px solid #8b5cf6;
+  padding-bottom: 0.75rem; /* 👈 Increased from 0.5rem */
+  margin-bottom: -0.25rem; /* 👈 Pull border down to align with nav bar */
+}
+
+@media (min-width: 640px) {
   .btn-nav {
-    padding-left: 1.5rem; /* sm:px-6 */
+    padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 }
 
-@media (min-width: 768px) { /* md breakpoint */
+@media (min-width: 768px) {
   .btn-nav {
-    padding-left: 1.75rem; /* md:px-7 */
+    padding-left: 1.75rem;
     padding-right: 1.75rem;
-    font-size: 1rem; /* md:text-base */
+    font-size: 1rem;
   }
 }
+
 /* ---------------------- */
 /* Animations             */
 /* ---------------------- */
@@ -302,8 +324,8 @@ canvas { pointer-events: auto !important; }
 html, body {
   width: 100%;
   height: 100%;
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  overflow-y: auto;   /* Allow normal vertical scrolling */
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #root {
@@ -311,7 +333,197 @@ html, body {
 }
 
 canvas {
-  display: block; /* Prevents default inline-canvas spacing */
+  display: block;
   max-width: 100%;
   max-height: 100%;
+}
+
+/* ✅ Glassmorphism Base */
+.bg-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+}
+
+/* ✅ Gradient Border */
+.border-gradient {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899, #3b82f6);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+/* ✅ Text Gradient */
+.text-gradient {
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ✅ Hover Effects */
+.hover-glow {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+  transform: translateY(-5px);
+}
+
+/* ✅ Hover Scale */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* ✅ Line Clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 2;
+}
+
+/* ✅ Modal Animation */
+.modal-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 300ms ease-out;
+}
+
+.modal-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 200ms ease-in;
+}
+
+/* ✅ Dark Background */
+.dark-bg {
+  background-color: #0a0a0f;
+}
+
+/* ✅ Project Card Specific Styles */
+.project-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.project-image {
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
+
+/* ✅ Tag Styles */
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tag-purple {
+  background: rgba(139, 92, 246, 0.2);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.tag-blue {
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* ✅ Button Styles */
+.btn-project {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-github {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-github:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-live {
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  color: white;
+}
+
+.btn-live:hover {
+  background: linear-gradient(90deg, #7c4dff, #e53e3e);
+  transform: translateY(-2px);
+}
+
+/* ✅ Filter Button Styles */
+.filter-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.filter-btn:not(.active):hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ✅ Call to Action Card */
+.cta-card {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  backdrop-filter: blur(12px);
+}
+
+.cta-card:hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+  transform: scale(1.02);
+}
+
+/* ✅ Ensure all images are properly styled */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }

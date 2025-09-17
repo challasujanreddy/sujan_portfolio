@@ -1,7 +1,7 @@
 import { Hero } from './components/Hero';
 import { AboutMe } from './components/AboutMe';
 import { Skills } from './components/Skills';
-import ProjectsDrawer from './components/ProjectsDrawer';
+import { ProjectsPage } from './components/Projects/ProjectsPage';
 import { PortfolioProvider } from './contexts/PortfolioContext';
 import { Resume } from './components/Resume';
 import { Contact } from './components/Contact';
@@ -22,7 +22,7 @@ function App() {
           <Hero />
           <AboutMe />
           <Skills />
-          <ProjectsDrawer />
+          <ProjectsPage />
           <Resume />
           <Contact />
         </main>
